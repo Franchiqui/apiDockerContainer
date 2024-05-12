@@ -1,2 +1,2 @@
 echo 'Running server...'
-uvicorn, main:app, --reload, --host, 0.0.0.0:$PORT
+gunicorn --env, main:app, --reload, --host, 0.0.0.0:$PORT
