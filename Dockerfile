@@ -40,5 +40,5 @@ EXPOSE 8000
 ENV PORT_RANGE="49000-49100"
 
 # Comando para ejecutar la aplicación utilizando uvicorn
-CMD ["gunicorn","main:app","--bind", "0.0.0.0:$PORT_RANGE","--workers", "3","--worker-class", "gevent","--pre-fork", "1","--reload"]
 
+CMD ["uvicorn", "main:app", "--reload", "--host", "0.0.0.0:$PORT_RANGE"]
