@@ -31,7 +31,7 @@ RUN pip install -r requirements.txt
 COPY . .
 
 # Exponer el puerto 8000 en el contenedor
-EXPOSE 8000
+# EXPOSE 8000
 
 # Comando para ejecutar la aplicación utilizando uvicorn
-CMD ["sh", "entrypoint.sh"]
+CMD ["uvicorn", "main:app", "--reload", "--host", "0.0.0.0", "--port", "8000"]
