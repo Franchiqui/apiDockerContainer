@@ -26,6 +26,8 @@ RUN apt-get update \
     && apt-get install -y libgl1-mesa-glx \
     && rm -rf /var/lib/apt/lists/*
 
+RUN pip install gunicorn
+
 # Instalar las dependencias
 RUN pip install -r requirements.txt
 
