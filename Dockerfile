@@ -41,4 +41,4 @@ ENV PORT_RANGE="49000-49100"
 
 # Comando para ejecutar la aplicación utilizando uvicorn
 
-CMD ["uvicorn", "main:app", "--reload", "--host", "0.0.0.0:$PORT_RANGE"]
+CMD ["gunicorn", "main:app", "--reload", "--host", "0.0.0.0:$PORT_RANGE"]
