@@ -9,6 +9,8 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install\
 
 ENV PIP_DISABLE_PIP_VERSION_CHECK=1
 ENV PYTHONUNBUFFERED=1
+ENV PORT_RANGE="49000-49100"
+
 
 # Establece el directorio de trabajo dentro del contenedor
 WORKDIR /app
@@ -31,7 +33,8 @@ RUN pip install -r requirements.txt
 COPY . .
 
 # Exponer el puerto 8000 en el contenedor
-# EXPOSE 8000
+EXPOSE 8000
 
 # Comando para ejecutar la aplicación utilizando uvicorn
-CMD ["uvicorn", "main:app", "--reload", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["gunicorn","--bind", "0.0.0.0:$PORT_RANGE", "--workers", "3", "--worker-class", "gevent", "--pre-fork", "1", "--reload", "main:app"]
+
