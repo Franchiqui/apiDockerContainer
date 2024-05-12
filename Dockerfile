@@ -9,8 +9,6 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install\
 
 ENV PIP_DISABLE_PIP_VERSION_CHECK=1
 ENV PYTHONUNBUFFERED=1
-ENV PORT_RANGE="49000-49100"
-
 
 # Establece el directorio de trabajo dentro del contenedor
 WORKDIR /app
@@ -26,8 +24,6 @@ RUN apt-get update \
     && apt-get install -y libgl1-mesa-glx \
     && rm -rf /var/lib/apt/lists/*
 
-RUN pip install gunicorn
-
 # Instalar las dependencias
 RUN pip install -r requirements.txt
 
@@ -38,5 +34,4 @@ COPY . .
 EXPOSE 80
 
 # Comando para ejecutar la aplicación utilizando uvicorn
-
-CMD ["gunicorn", "main:app", "--reload", "--host", "0.0.0.0", "--port", "80"]
+CMD ["uvicorn", "main:app", "--reload", "--host", "0.0.0.0", "--port", "80"]
