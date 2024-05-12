@@ -38,5 +38,5 @@ COPY . .
 EXPOSE 8000
 
 # Comando para ejecutar la aplicación utilizando uvicorn
-CMD ["gunicorn","--bind", "0.0.0.0:$PORT_RANGE", "--workers", "3", "--worker-class", "gevent", "--pre-fork", "1", "--reload", "main:app"]
+CMD ["gunicorn","--bind", "0.0.0.0:$PORT_RANGE", "--workers", "3", "--worker -class", "gevent", "--pre -fork", "1", "--reload", "main:app"]
 
