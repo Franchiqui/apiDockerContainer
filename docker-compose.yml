@@ -15,4 +15,4 @@ services:
     build: .
     container_name: fastapi-application
     ports:
-      - "0000:0080"
+      - "3000:3000"
