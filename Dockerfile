@@ -35,10 +35,8 @@ RUN pip install -r requirements.txt
 COPY . .
 
 # Exponer el puerto 8000 en el contenedor
-EXPOSE 8000
-
-ENV PORT_RANGE="49000-49100"
+EXPOSE 80
 
 # Comando para ejecutar la aplicación utilizando uvicorn
 
-CMD ["gunicorn", "main:app", "--reload", "--host", "0.0.0.0:$PORT_RANGE"]
+CMD ["gunicorn", "main:app", "--reload", "--host", "0.0.0.0", "--port", "80"]
