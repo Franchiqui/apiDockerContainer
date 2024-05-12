@@ -15,7 +15,6 @@ filelock==3.14.0
 future==1.0.0
 gevent==24.2.1
 greenlet==3.0.3
-gunicorn==22.0.0
 h11==0.14.0
 h2==4.1.0
 hpack==4.0.0
