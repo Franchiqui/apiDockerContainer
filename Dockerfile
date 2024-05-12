@@ -34,4 +34,4 @@ COPY . .
 EXPOSE 8000
 
 # Comando para ejecutar la aplicación utilizando uvicorn
-CMD ["uvicorn", "main:app", "--reload", "--host", "0.0.0.0", "--port", "$PORT"]
+CMD ["sh", "entrypoint.sh"]
