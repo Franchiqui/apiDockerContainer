@@ -1,9 +1,14 @@
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, Request, File, UploadFile
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 from app.traductor import traductor_func
 from app.video import video_func
 from app.scanTexto import scanTexto_func
+from app.process_image import process_image_func
+from app.scanTexto import process_image_func
+
+scanTexto = scanTexto_func(UploadFile, task="grayscale")
+print(scanTexto)
 
 origins = ["*"]
 
@@ -49,6 +54,27 @@ def actualizar_libro(id: int, libro: Libro):
 @app.delete("/libros/{id}")
 def eliminar_libro(id: int):
     return {"message": f"libro (libro.titulo) eliminado"}
+
+
+
+@app.post("/process_image")
+async def process_image_endpoint(image: UploadFile = File(...),
+                                task: str = "original",
+                                 **kwargs):
+    """
+    API endpoint for processing images using OpenCV.
+
+    Args:
+        image (UploadFile): The image file uploaded by the user.
+        task (str, optional): The image processing task to perform.
+            Defaults to "original" (returns the original image).
+        **kwargs: Additional keyword arguments specific to each task.
+
+    Returns:
+        bytes: The processed image data.
+    """
+    processed_image = await process_image_func(image, task, **kwargs)
+    return processed_image
 
 
     

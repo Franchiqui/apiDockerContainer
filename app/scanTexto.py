@@ -1,7 +1,11 @@
+from process_image import process_image
 import cv2
 import pytesseract
 
-def scanTexto_func(imagePath):
+
+def scanTexto_func(imagePath, task="original", **kwargs):
+    process_image = process_image(imagePath, task, **kwargs)
+
     """
     Extrae texto de una imagen y lo devuelve como cadena.
 
