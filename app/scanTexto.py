@@ -1,7 +1,9 @@
+from app.process_image import process_image_func;imagePath:any
 import numpy as np
 import cv2
 import pytesseract
 
+process_image = process_image_func(imagePath)
 
 def scanTexto_func(imagePath, task="original", **kwargs):
     process_image = process_image(imagePath, task, **kwargs)

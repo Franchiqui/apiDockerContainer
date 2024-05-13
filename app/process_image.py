@@ -1,8 +1,9 @@
+from app.scanTexto import UploadFile
 from fastapi import UploadFile
 import cv2
 import numpy as np
 
-async def process_image(image: UploadFile, task: str, **kwargs):
+async def process_image(imagePath: UploadFile, task: str, **kwargs):
     """
     Processes an uploaded image using OpenCV.
     Args:
@@ -13,7 +14,7 @@ async def process_image(image: UploadFile, task: str, **kwargs):
         bytes: The processed image data.
     """
     # Read the image
-    img = cv2.imdecode(np.fromstring(await image.read(), np.uint8), cv2.IMREAD_COLOR)
+    img = cv2.imdecode(np.fromstring(await imagePath.read(), np.uint8), cv2.IMREAD_COLOR)
     
     # Handle different processing tasks with specific parameters
     processed_img = None
