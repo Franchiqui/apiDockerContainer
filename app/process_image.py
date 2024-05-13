@@ -1,4 +1,3 @@
-from app.scanTexto import UploadFile
 from fastapi import UploadFile
 import cv2
 import numpy as np
