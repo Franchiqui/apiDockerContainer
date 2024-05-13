@@ -1,3 +1,4 @@
+import os
 from fastapi import FastAPI, Request, File, UploadFile
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
@@ -53,6 +54,27 @@ def actualizar_libro(id: int, libro: Libro):
 def eliminar_libro(id: int):
     return {"message": f"libro (libro.titulo) eliminado"}
 
+
+@app.post("/uploadfile/")
+async def create_upload_file(imagePath: UploadFile):
+    """
+    Sube un archivo de imagen y lo guarda en el servidor.
+
+    Argumentos:
+        imagePath (UploadFile): El archivo de imagen cargado por el usuario.
+
+    Retorno:
+        str: El nombre del archivo guardado y su ruta completa.
+    """
+    filename = imagePath.filename
+    contents = await imagePath.read()
+
+    # Guardar el archivo en el servidor
+    with open(f"uploads/{filename}", "wb") as file:
+        file.write(contents)
+
+    saved_file_path = os.path.join(f"uploads/{filename}")
+    return {"filename": filename, "saved_file_path": saved_file_path}
 
 
 @app.post("/process_image")
