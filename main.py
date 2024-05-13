@@ -6,8 +6,6 @@ from app.traductor import traductor_func
 from app.video import video_func
 from app.scanTexto import scanTexto_func
 
-scanTexto = scanTexto_func(UploadFile, task="grayscale")
-print(scanTexto)
 
 origins = ["*"]
 
