@@ -1,10 +1,10 @@
-from fileinput import filename
 from app.process_image import UploadFile
 import numpy as np
 import cv2
 import pytesseract
 
-def scanTexto_func(UploadFile: str, task="original", **kwargs):
+async def scanTexto_func(imagePath: str, task="original"):
+    processed_image = await UploadFile(imagePath, task)
 
     """
     Extrae texto de una imagen y lo devuelve como cadena.

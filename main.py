@@ -67,11 +67,11 @@ async def create_upload_file(imagePath: UploadFile):
     filename = imagePath.filename
     contents = await imagePath.read()
 
-    # Guardar el archivo en el servidor
-    with open(f"uploads/{filename}", "wb") as file:
+    # Guardar el archivo en el mismo directorio que el script
+    with open(f"imagePath/{filename}", "wb") as file:
         file.write(contents)
 
-    saved_file_path = os.path.join(f"uploads/{filename}")
+    saved_file_path = os.path.join(f"imagePath/{filename}")
     return {"filename": filename, "saved_file_path": saved_file_path}
 
 
