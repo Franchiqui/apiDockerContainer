@@ -1,8 +1,6 @@
-from fastapi import FastAPI, File, UploadFile
+from fastapi import UploadFile
 import cv2
 import numpy as np
-import asyncio
-from typing import Optional
 
 async def process_image(image: UploadFile, task: str, **kwargs):
     """

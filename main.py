@@ -4,8 +4,6 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.traductor import traductor_func
 from app.video import video_func
 from app.scanTexto import scanTexto_func
-from app.process_image import process_image_func
-from app.scanTexto import process_image_func
 
 scanTexto = scanTexto_func(UploadFile, task="grayscale")
 print(scanTexto)
@@ -73,7 +71,7 @@ async def process_image_endpoint(image: UploadFile = File(...),
     Returns:
         bytes: The processed image data.
     """
-    processed_image = await process_image_func(image, task, **kwargs)
+    processed_image = await UploadFile(image, task, **kwargs)
     return processed_image
 
 
