@@ -77,8 +77,8 @@ async def create_upload_file(imagePath: UploadFile):
 
 @app.post("/process_image")
 async def process_image_endpoint(image: UploadFile = File(...),
-                                task: str = "original",
-                                 **kwargs):
+    task: str = "original",
+        **kwargs):
     """
     API endpoint for processing images using OpenCV.
 

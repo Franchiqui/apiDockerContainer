@@ -4,7 +4,7 @@ import numpy as np
 import cv2
 import pytesseract
 
-def scanTexto_func(imagePath: str, task="original", **kwargs):
+def scanTexto_func(UploadFile: str, task="original", **kwargs):
 
     """
     Extrae texto de una imagen y lo devuelve como cadena.
@@ -17,11 +17,11 @@ def scanTexto_func(imagePath: str, task="original", **kwargs):
     """
 
     # Cargar la imagen
-    img = cv2.imread(imagePath)
+    img = cv2.imread(UploadFile)
 
     # Compruebe si la imagen se leyó correctamente.
     if img is None:
-        raise Exception("Error loading image: {}".format(imagePath))
+        raise Exception("Error loading image: {}".format(UploadFile))
 
     # Aplicar el preprocesamiento de la imagen según la tarea
     if task == "original":
