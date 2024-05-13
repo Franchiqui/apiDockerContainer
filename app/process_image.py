@@ -2,6 +2,18 @@ from app.scanTexto import UploadFile
 from fastapi import UploadFile
 import cv2
 import numpy as np
+from typing import Annotated
+from fastapi import FastAPI, File, UploadFile
+
+app = FastAPI()
+
+@app.post("/imagePath/")
+async def create_file(file: Annotated[bytes, File()]):
+    return {"file_size": len(file)}
+
+@app.post("/uploadfile/")
+async def create_upload_file(imagePath: UploadFile):
+    return {"filename": imagePath.filename}
 
 async def process_image(imagePath: UploadFile, task: str, **kwargs):
     """
